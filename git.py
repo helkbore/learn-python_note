@@ -45,7 +45,39 @@ git reset HEAD 文件名        撤销暂存区(add)
 # 远程仓库
 '''
 1. 创建ssh key
-ssh-keygen -t rsa -C "helkbore@163.com"
+$ ssh-keygen -t rsa -C "helkbore@163.com"
 2. 在本地找到id_rsa.pub文件 录入到github中
+3. 在github上建版本库
+4. 连接远程
+$ git remote add origin git@github.com:michaelliao/learngit.git
+5. 把本地库的所有内容推送到远程库上
+$ git push -u origin master
+6. 本地提交到远程
+$ git push origin master
+'''
 
+# 远程库克隆到本地
+'''
+$ git clone git@github.com:helkbore/gitskills.git
+'''
+
+# 分支相关
+'''
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>
+
+创建+切换分支：git checkout -b <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
+
+查看分支合并情况
+$ git log --graph --pretty=oneline --abbrev-commit
+
+--no-ff 合并 
+$ git merge --no-ff -m "merge with no-ff" dev
 '''
