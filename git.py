@@ -81,3 +81,14 @@ $ git log --graph --pretty=oneline --abbrev-commit
 --no-ff 合并 
 $ git merge --no-ff -m "merge with no-ff" dev
 '''
+
+# 工作场景储存
+'''
+分支1
+$ git stash
+$ git checkout 分支2
+修改编辑, add, commit之后删除分支2 回到分支1
+
+$ git stash list
+$ git stash pop
+'''
