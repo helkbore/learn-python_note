@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-'知乎-从零开始写爬虫-笔记-1.5获取百度贴吧内容 2017年11月6日'
+'知乎-从零开始写爬虫-笔记-1.5获取百度贴吧内容 2017年11月7日'
 
 __author__ = 'Gentiana'
 
@@ -19,6 +19,8 @@ lxml, BeautifulSoup
 
 import requests
 from bs4 import BeautifulSoup
+
+# 抓取网页
 def get_html(url):
     try:
         r = requests.get(url, timeout=30)
@@ -30,6 +32,8 @@ def get_html(url):
     except:
         return " ERROR "
 
+
+# 分析网页, 整理信息
 def get_content(url):
     comments = []
 
@@ -37,7 +41,60 @@ def get_content(url):
     soup = BeautifulSoup(html, 'lxml')
 
     liTags = soup.find_all('li', attrs={'class': ' j_thread_list clearfix'})
-    return liTags
 
-url = 'http://tieba.baidu.com/f?ie=utf-8&kw=%E7%94%B5%E5%AD%90%E4%B9%A6&fr=search'
-print(get_content(url))
+    for li in liTags:
+        comment = {}
+        try:
+            comment['title'] = li.find(
+                'a', attrs={}).text.strip()
+            # print(comment['title'])
+            comment['link'] = "http://tieba.baidu.com/" + \
+                li.find('a', attrs={'class': 'j_th_tit '})['href']
+            comment['name'] = li.find(
+                'span', attrs={'class': 'tb_icon_author '}).text.strip()
+            comment['time'] = li.find(
+                'span', attrs={'class': 'pull-right is_show_create_time'}).text.strip()
+            comment['replyNum'] = li.find(
+                'span', attrs={'class': 'threadlist_rep_num center_text'}).text.strip()
+            # print(comment)
+            comments.append(comment)
+            # print(comment)
+        except BaseException as e:
+            print('出了点小问题', e)
+    return comments
+
+
+def Out2File(dict):
+    '''
+    将爬取到的文件写入到本地
+    保存到当前目录的 TTBT.txt文件中。
+
+    '''
+    with open('TTBT.txt', 'a+', encoding='utf-8') as f:
+        for comment in dict:
+            f.write('标题： {} \t 链接：{} \t 发帖人：{} \t 发帖时间：{} \t 回复数量： {} \n'.format(
+                comment['title'], comment['link'], comment['name'], comment['time'], comment['replyNum']))
+
+            print('当前页面爬取完成')
+
+
+def main(base_url, deep):
+    url_list = []
+    # 将所有需要爬去的url存入列表
+    for i in range(0, deep):
+        url_list.append(base_url + '&pn=' + str(50 * i))
+    print('所有的网页已经下载到本地！ 开始筛选信息。。。。')
+
+    #循环写入所有的数据
+    for url in url_list:
+        content = get_content(url)
+        Out2File(content)
+    print('所有的信息都已经保存完毕！')
+
+base_url  = 'https://tieba.baidu.com/f?ie=utf-8&kw=%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80&fr=search'
+deep = 5
+
+# print(get_content(url))
+
+if __name__ == '__main__':
+    main(base_url, deep)
