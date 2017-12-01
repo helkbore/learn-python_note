@@ -12,9 +12,9 @@ print(os.name)
 # os.uname()
 
 # 环境变量
-print(os.environ)
-print(os.environ.get('PATH'))
-print(os.environ.get('x', 'default'))
+# print(os.environ)
+# print(os.environ.get('PATH'))
+# print(os.environ.get('x', 'default'))
 
 # 操作文件和目录
 # 查看当前目录的绝对路径:
