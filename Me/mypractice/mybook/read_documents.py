@@ -36,14 +36,24 @@ files = os.listdir(book_dir)
 for file in files:
     book = {}
     # print(file)
-    book['file_name'] = os.path.splitext(file)[0]
-    book['name'] = book['file_name'].split('-')[0]
-    book['author'] = book['file_name'].split('-')[1] if len(book['file_name'].split('-'))  > 1 else '未知'
+    book['origin_name'] = os.path.splitext(file)[0]
+    book['book_name'] = book['origin_name'].split('-')[0]
+    book['author'] = book['origin_name'].split('-')[1] if len(book['origin_name'].split('-'))  > 1 else '未知'
     book['size'] = os.path.getsize(os.path.join(book_dir, file))
     # book['size'] = math.ceil(os.path.getsize(os.path.join(book_dir, file)) / 1024)
-    book['type'] = os.path.splitext(file)[1]
-    print(book)
+    book['ext'] = os.path.splitext(file)[1][1:]
+
+    # for d in book:
+    #
+    #    print(d)
+    #    print(book[d])
+    # print("over")
+    # print(book.keys())
+    # print(book.values())
+
     # save_dict(book)
-    book_db.save_book(book)
-    print(os.path.abspath("."))
-    print(os.path.abspath("book_db.py"))
+
+    book_db.save_book('book', book)
+    # print(os.path.abspath("."))
+    # print(os.path.abspath("book_db.py"))
+print("---end")
