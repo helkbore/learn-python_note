@@ -35,9 +35,73 @@ def get_jsh_type():
 
     for l in liTags:
         type = {}
-        type['name'] = l.text.strip()
+        type['name'] = l.text.strip()[1:-1]
         type['href'] = l["href"]
-        # print(type)
-        book_db.save_book('book_type', type)
+        print(type)
+        book_db.save_type('jsh_type', type)
 
-get_jsh_type()
+# ---- 爬取集思会书籍分类
+# get_jsh_type()
+
+# -- 抓取豆瓣
+# ---- 抓取豆瓣标签分类
+def get_db_type():
+    url = "https://book.douban.com/tag/?view=type&icn=index-sorttags-all"
+
+    html = get_html(url)
+    soup = BeautifulSoup(html, 'lxml')
+    table = soup.findAll("table", attrs={'class': 'tagCol'})
+    for t in table:
+        title = {}
+        tag = {}
+        title_a = t.previous_sibling.previous_sibling
+        title["label"] = title_a.text.strip()[0:2]
+        title["father"] = 0
+        insert_id = book_db.save_label("db_label", title)
+
+        tag["father"] = insert_id
+        trsorts = t.findAll("tr")
+        for tr in trsorts:
+            for td in tr.findAll("td"):
+                tag["label"] = td.find("a").text.strip()
+                book_db.save_label("db_label", tag)
+                # print(td.find("a").text)
+            # print(tr)
+        # print(t)
+
+        # print(insert_id)
+# get_db_type()
+# ----抓取豆瓣分类页图书
+def get_db_books():
+    type="网络技术"
+    base_url = "http://www.kindlepush.com/category/1/0/"
+    size = 3
+    begin = 1
+    for n in range(begin, size + 1):
+        url = base_url + str(n)
+        # print(url)
+        html = get_html(url)
+        soup = BeautifulSoup(html, 'lxml')
+        ul = soup.find("ul", attrs={'class': 'j-list'})
+        li = ul.findAll("li", attrs={'class': 'u-bookitm1 j-bookitm'})
+        for l in li:
+            book = {}
+            info = l.find("div", attrs={'class': 'info'})
+            a = info.find("a", attrs={'class': 'title'})
+            book["name"] = a.text.strip()
+            book["href"] = a["href"]
+            book['cover_link'] = l.img['src']
+            book["pingfen"] = info.find("span", attrs={'class': 'num'}).text.strip()[1:-1]
+            book["autho"] = info.find("div", attrs={'class': 'u-author'}).span.text.strip()
+            book["type"] = type
+
+            # 下载图片
+
+
+            with open('E:/downbooks/covers/' + book["name"] + '.jpg', 'wb+') as f:
+                f.write(requests.get( book['cover_link']).content)
+
+            print(book)
+
+
+get_db_books()
