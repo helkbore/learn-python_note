@@ -6,6 +6,9 @@ import requests
 from bs4 import BeautifulSoup
 import random
 import book_db
+import time
+import os
+from datetime import datetime
 
 # -- 公共方法
 def get_html(url):
@@ -52,6 +55,7 @@ def get_db_type():
     soup = BeautifulSoup(html, 'lxml')
     table = soup.findAll("table", attrs={'class': 'tagCol'})
     for t in table:
+
         title = {}
         tag = {}
         title_a = t.previous_sibling.previous_sibling
@@ -68,40 +72,56 @@ def get_db_type():
                 # print(td.find("a").text)
             # print(tr)
         # print(t)
+        time.sleep(10)
 
         # print(insert_id)
 # get_db_type()
 # ----抓取豆瓣分类页图书
 def get_db_books():
-    type="网络技术"
-    base_url = "http://www.kindlepush.com/category/1/0/"
-    size = 3
+    type="教育学习"
+    base_url = "http://www.kindlepush.com/category/10/0/"
+    size = 39
     begin = 1
     for n in range(begin, size + 1):
+        # time.sleep(10)
+        print("第: " + str(n) + "  页")
         url = base_url + str(n)
-        # print(url)
+        print(url)
+
         html = get_html(url)
         soup = BeautifulSoup(html, 'lxml')
         ul = soup.find("ul", attrs={'class': 'j-list'})
         li = ul.findAll("li", attrs={'class': 'u-bookitm1 j-bookitm'})
         for l in li:
+            # time.sleep(5)
             book = {}
             info = l.find("div", attrs={'class': 'info'})
             a = info.find("a", attrs={'class': 'title'})
-            book["name"] = a.text.strip()
+            book["name"] = a.text.strip().replace("'", "\'\'").replace("/", "_").lstrip('"')
+            # print(book["name"])
             book["href"] = a["href"]
             book['cover_link'] = l.img['src']
             book["pingfen"] = info.find("span", attrs={'class': 'num'}).text.strip()[1:-1]
-            book["autho"] = info.find("div", attrs={'class': 'u-author'}).span.text.strip()
+            book["author"] = info.find("div", attrs={'class': 'u-author'}).span.text.strip().lstrip('"').replace('"', "\'\'")
             book["type"] = type
 
             # 下载图片
 
+            try:
+                path = 'E:/downbooks/covers/' + type + "/"
+                if (os.path.exists(path) != True):
+                    os.mkdir(path)
+                if (book['cover_link']):
+                    with open(path + book["name"] + '.jpg', 'wb+') as f:
+                        f.write(requests.get(book['cover_link']).content)
+            except Exception as e:
+                continue
 
-            with open('E:/downbooks/covers/' + book["name"] + '.jpg', 'wb+') as f:
-                f.write(requests.get( book['cover_link']).content)
 
-            print(book)
+            print("【" + str(datetime.now())[0:-6] + "】-" + book["name"] + '-------------' + book["author"] )
+            book_db.save_jsh_book("jsh_book", book)
+
+        # time.sleep(1)
 
 
 get_db_books()

@@ -21,6 +21,13 @@ def save_label(table, d):
     rowid = save_dict(table, d, sql)
     return rowid
 
+def save_jsh_book(table, d):
+    # sql = "select id from %s where name = '%s'  " % (table, d['name'])
+    sql = "select id from " + table + " where name = " + '"' +  d['name'] + '"'
+    # print(sql)
+    rowid = save_dict(table, d, sql)
+    return rowid
+
 def save_dict(table, d,select_sql):
     conn = sqlite3.connect('E:\\备份\\sqlite\\kindlebook.db')
     cursor = conn.cursor()
@@ -45,8 +52,11 @@ def save_dict(table, d,select_sql):
 
         values = "','".join(dvalue)
         values = "'" + values + "'"
+        values = '","'.join(dvalue)
+        values = '"' + values + '"'
 
         sql = "insert into %s ( %s ) values ( %s )" % (table, cols, values)
+
         # print(sql)
 
 
