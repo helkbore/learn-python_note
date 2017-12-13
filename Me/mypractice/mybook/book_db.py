@@ -4,10 +4,27 @@
 '数据库操作 2017年12月1日'
 
 import sqlite3
+import logging
+
+
+logop = {}
+global logger
+logop['logfile'] = "log.txt"
+logop['loglevel'] = "INFO"
+logger = logging.getLogger()
+hdlr = logging.FileHandler(logop['logfile'], encoding="utf-8")
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr)
+try:
+  logger.setLevel(logop['loglevel'])
+except:
+  print("你输入的日志等级不正确")
+
 
 
 def save_book(table, d):
-    sql = "select id from %s where book_name = '%s' and ext = '%s' " % (table, d['book_name'], d['ext'])
+    sql = "select id from %s where book_name = '%s' and ext = '%s' and size = %s " % (table, d['book_name'], d['ext'], d['size'])
     save_dict(table, d, sql)
 
 def save_type(table, d):
@@ -70,10 +87,29 @@ def save_dict(table, d,select_sql):
         conn.commit()
         conn.close()
         return rowid
-
+    else:
+        # print("导入失败的书: ")
+        logger.info("导入失败的书: ")
+        logger.info(d)
+        # print(d)
 
 # d = {'book_name': 'test', 'size': '100', 'ext': 'mobi', 'origin_name': 'test.mobi'}
 # table = 'book'
 # # save_dict('book', book)
 # sql = "select id from %s where book_name = '%s' and ext = '%s' " % (table, d['book_name'], d['ext'])
 # print(sql)
+
+# conn = sqlite3.connect('E:\\备份\\sqlite\\kindlebook.db')
+# cursor = conn.cursor()
+# sql = "select book_name from book"
+# cursor.execute(sql)
+#
+# info = {}
+# allBook = []
+# for i in cursor.fetchall():
+#     info['book_name'] = i[0]
+#     allBook.append(info)
+# print(allBook)
+#
+# conn.commit()
+# conn.close()

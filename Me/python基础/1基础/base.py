@@ -1,6 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+True
+False
+None
+
+
+# 判断None
+if x is None:
+	pass
+if not x:
+	pass
+if '':
+    pass
+
 
 # 开始
 # print("Hello world");

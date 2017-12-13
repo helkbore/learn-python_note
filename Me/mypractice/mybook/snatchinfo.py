@@ -10,6 +10,8 @@ import time
 import os
 from datetime import datetime
 
+
+
 # -- 公共方法
 def get_html(url):
     try:
@@ -78,8 +80,8 @@ def get_db_type():
 # get_db_type()
 # ----抓取豆瓣分类页图书
 def get_db_books():
-    type="教育学习"
-    base_url = "http://www.kindlepush.com/category/10/0/"
+    type="外文原版"
+    base_url = "http://www.kindlepush.com/category/27/0/"
     size = 39
     begin = 1
     for n in range(begin, size + 1):
@@ -120,8 +122,9 @@ def get_db_books():
 
             print("【" + str(datetime.now())[0:-6] + "】-" + book["name"] + '-------------' + book["author"] )
             book_db.save_jsh_book("jsh_book", book)
+        book_db.logger.info("读取 " + type + "目录下书籍成功")
 
-        # time.sleep(1)
+        # time.sleep(5)
 
 
 get_db_books()

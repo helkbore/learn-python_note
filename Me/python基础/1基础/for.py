@@ -4,6 +4,16 @@
 
 ####### 循环 2017年10月30日
 
+for i in range(0, 30,5):
+	print(i)
+'''
+相当于其他语言的:
+for(var i =0; i < 30, i = i + 5){
+    print i
+}
+'''
+
+
 # for...in循环，依次把list或tuple中的每个元素迭代出来
 names = ['Michael', 'Bob', 'Tracy']
 for name in names:
