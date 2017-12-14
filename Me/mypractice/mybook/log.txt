@@ -647,3 +647,41 @@ http://www.kindlepush.com/category/17/0/7
 2017-12-13 08:39:09,870 INFO {'origin_name': '鞋狗.azw3', 'book_name': '鞋狗', 'author': '未知', 'size': 2648538, 'ext': 'azw3'}
 2017-12-13 08:39:09,872 INFO 导入失败的书: 
 2017-12-13 08:39:09,873 INFO {'origin_name': '香水—个谋杀犯的故事 -帕·聚斯金德.mobi', 'book_name': '香水—个谋杀犯的故事', 'author': '帕·聚斯金德.mobi', 'size': 449149, 'ext': 'mobi'}
+2017-12-13 09:52:55,196 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:52:58,932 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:03,452 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:08,640 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:13,158 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:17,506 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:20,748 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:24,584 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:25,762 INFO 导入失败的书: 
+2017-12-13 09:53:25,762 INFO {'name': '应许之日', 'href': 'http://www.kindlepush.com:80/book/14561', 'cover_link': 'https://images-cn.ssl-images-amazon.com/images/I/61mTi1h%2BpGL._SX338_BO1,204,203,200_.jpg', 'pingfen': '6.9', 'author': '辛夷坞', 'type': '言情耽美'}
+2017-12-13 09:53:28,667 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:32,829 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:37,389 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:40,917 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:42,966 INFO 导入失败的书: 
+2017-12-13 09:53:42,967 INFO {'name': '婚结', 'href': 'http://www.kindlepush.com:80/book/30951', 'cover_link': 'https://img3.doubanio.com/lpic/s6477904.jpg', 'pingfen': '瓣评分：暂', 'author': '飘阿兮', 'type': '言情耽美'}
+2017-12-13 09:53:44,960 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:49,112 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:52,575 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:56,492 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:53:59,535 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:54:04,562 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:54:08,012 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:54:10,996 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:54:15,383 INFO 读取 言情耽美目录下书籍成功
+2017-12-13 09:54:15,698 INFO 导入失败的书: 
+2017-12-13 09:54:15,698 INFO {'name': '末路相逢', 'href': 'http://www.kindlepush.com:80/book/2581', 'cover_link': 'https://img3.doubanio.com/lpic/s3436173.jpg', 'pingfen': '7.2', 'author': '晴空蓝兮', 'type': '言情耽美'}
+2017-12-13 09:54:15,765 INFO 导入失败的书: 
+2017-12-13 09:54:15,765 INFO {'name': '这些都是我给你的爱', 'href': 'http://www.kindlepush.com:80/book/2837', 'cover_link': 'https://img3.doubanio.com/lpic/s4588222.jpg', 'pingfen': '7.3', 'author': '周语 编', 'type': '言情耽美'}
+2017-12-13 09:54:15,816 INFO 导入失败的书: 
+2017-12-13 09:54:15,816 INFO {'name': '我遇见了怎样的男子', 'href': 'http://www.kindlepush.com:80/book/3139', 'cover_link': 'http://img3.doubanio.com/lpic/s24406499.jpg', 'pingfen': '6.9', 'author': '洛克晓能', 'type': '言情耽美'}
+2017-12-13 09:54:16,133 INFO 导入失败的书: 
+2017-12-13 09:54:16,133 INFO {'name': '梦回大秦', 'href': 'http://www.kindlepush.com:80/book/2585', 'cover_link': 'https://img3.doubanio.com/lpic/s25109860.jpg', 'pingfen': '6.5', 'author': '留雁', 'type': '言情耽美'}
+2017-12-13 09:54:16,630 INFO 导入失败的书: 
+2017-12-13 09:54:16,631 INFO {'name': '台北', 'href': 'http://www.kindlepush.com:80/book/2332', 'cover_link': 'http://img3.doubanio.com/lpic/s6173719.jpg', 'pingfen': '6.7', 'author': '堂心子', 'type': '言情耽美'}
+2017-12-13 09:54:17,025 INFO 导入失败的书: 
+2017-12-13 09:54:17,025 INFO {'name': '天命皇妃乱君心', 'href': 'http://www.kindlepush.com:80/book/2356', 'cover_link': 'https://img3.doubanio.com/lpic/s24406521.jpg', 'pingfen': '0.0', 'author': '倾城留雁', 'type': '言情耽美'}
+2017-12-13 09:54:17,228 INFO 读取 言情耽美目录下书籍成功

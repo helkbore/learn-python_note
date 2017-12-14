@@ -80,9 +80,9 @@ def get_db_type():
 # get_db_type()
 # ----抓取豆瓣分类页图书
 def get_db_books():
-    type="外文原版"
-    base_url = "http://www.kindlepush.com/category/27/0/"
-    size = 39
+    type="言情耽美"
+    base_url = "http://www.kindlepush.com/category/28/0/"
+    size = 22
     begin = 1
     for n in range(begin, size + 1):
         # time.sleep(10)
