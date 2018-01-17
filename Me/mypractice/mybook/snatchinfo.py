@@ -126,5 +126,20 @@ def get_db_books():
 
         # time.sleep(5)
 
+def get_hao123():
+    url = "https://www.hao123.com/?tn=91713162_hao_pg"
+    html = get_html(url)
+    soup = BeautifulSoup(html, 'lxml')
+    a = soup.findAll("a")
+    for l in a:
+        # type = {}
+        # type['name'] = l.text.strip()
+        # type['href'] = l["href"]
+        #
+        # print(type['name'] + type['href'])
+        print(l)
 
+    # print(a)
+    # print(html)
+# get_hao123()
 get_db_books()
