@@ -43,8 +43,12 @@ def get_var(var):
 
 # 省份分析
 df_friends = DataFrame(friends)
+# print(df_friends)
 Province = df_friends.Province
+# print(Province)
+# print(df_friends.keys())
 Province_count = Province.value_counts()
+# print(Province_count)
 Province_count = Province_count[Province_count.index!=''] #有一些好友地理信息为空，过滤掉这一部分人。
 
 # 城市
@@ -52,12 +56,28 @@ City = df_friends.City #[(df_friends.Province=='北京') | (df_friends.Province=
 City_count = City.value_counts()
 City_count = City_count[City_count.index!='']
 
+# print(Province_count.index[0])
+# exit()
+# print(Province_count.index[1])
+# print(Province_count.index[2])
+# exit()
 
-msg_body = '你的朋友主要来自省份：%s(%d)、%s(%d)和%s(%d)。\n\n' %(Province_count.index[0],Province_count[0],Province_count.index[1],Province_count[1],Province_count.index[2],Province_count[2]) + \
-           '主要来自这些城市：%s(%d)、%s(%d)、%s(%d)、%s(%d)、%s(%d)和%s(%d)。'%(City_count.index[0],City_count[0],City_count.index[1],City_count[1],City_count.index[2],City_count[2],City_count.index[3],City_count[3],City_count.index[4],City_count[4],City_count.index[5],City_count[5])
 
+try:
+    msg_body = '你的朋友主要来自省份：%s(%d)、%s(%d)和%s(%d)。\n\n' % (
+    Province_count.index[0], Province_count[0], Province_count.index[1], Province_count[1], Province_count.index[2],
+    Province_count[2]) + \
+               '主要来自这些城市：%s(%d)、%s(%d)、%s(%d)、%s(%d)、%s(%d)和%s(%d)。' % (
+               City_count.index[0], City_count[0], City_count.index[1], City_count[1], City_count.index[2],
+               City_count[2], City_count.index[3], City_count[3], City_count.index[4], City_count[4],
+               City_count.index[5], City_count[5])
 
-print(msg_body)
+    print(msg_body)
+except :
+    pass
+finally:
+    pass
+
 # itchat.send_msg(msg_body, toUserName='filehelper')
 
 
